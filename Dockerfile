@@ -22,7 +22,8 @@ RUN DEBIAN_FRONTEND=noninteractive  apt-get install -y \
  libc6 \
  libc6-i386 \
  Tk \
- gcc-arm-embedded
+ gcc-arm-embedded \
+ libnewlib-arm-none-eabi
 
 # Ceedling and test framework
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ruby-full
