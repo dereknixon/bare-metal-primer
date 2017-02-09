@@ -27,7 +27,10 @@
     - +:test/**
     - -:test/support
   :source:
-    - src/**
+    - src/
+    - /usr/arm-none-eabi/include
+    - /usr/local/msp432-tools/arm/include/
+    - /usr/local/msp432-tools/arm/include/CMSIS
   :support:
     - test/support
 
@@ -56,6 +59,41 @@
     uint32:   UINT32
     int8:     INT8
     bool:     UINT8
+
+:tools:
+  :test_compiler:
+     :executable: arm-none-eabi-gcc
+     :name: 'acme test compiler'
+     :arguments:
+        - -I"$": COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE 
+        - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR 
+        - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+        - -mcpu=cortex-m4 
+        - -march=armv7e-m 
+        - -mfloat-abi=hard 
+        - -mfpu=fpv4-sp-d16 
+        - -mthumb -D__MSP432P401R__ 
+        - -DTARGET_IS_MSP432P4XX 
+        - -Dgcc 
+        - -g 
+        - -gstrict-dwarf 
+        - -Wall 
+        - -ffunction-sections 
+        - -fdata-sections 
+        - -MD 
+        - -std=c99
+        - "#{`args.exe -m acme.prj`}"   #in-line ruby sub to shell out & build string of arguments
+        - -c ${1}
+        - -o ${2}
+  :test_linker:
+     :executable: /programs/acme/bin/linker.exe    #absolute file path
+     :name: 'acme test linker'
+     :arguments:
+        - ${1}               #list of object files to link (Ruby method call param list sub)
+        - -l$-lib:           #inline yaml array substitution to link in foo-lib and bar-lib
+           - foo
+           - bar
+        - -o ${2}            #executable file output (Ruby method call param list sub)
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
