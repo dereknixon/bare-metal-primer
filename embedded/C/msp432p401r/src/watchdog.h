@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void watchdog_writeRegister(uint16_t value);
+void stop_watchdog(void);
 
 #endif // _WATCHDOG_H

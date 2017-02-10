@@ -13,29 +13,47 @@ RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:team-gcc-arm-embedded/
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 
 # Basic dev tools
-RUN DEBIAN_FRONTEND=noninteractive  apt-get install -y \ 
- vim \
- git \
- make \
- man \
- wget \
- libc6 \
- libc6-i386 \
- Tk \
- gcc-arm-embedded \
- libnewlib-arm-none-eabi
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \ 
+  vim \
+  git \
+  make \ 
+  wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y man
+
+# Other dependencies  
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  libc6 \
+  libc6-i386 \
+  Tk \
+  gcc-arm-embedded \
+#  libnewlib-arm-none-eabi \
+  libgtk2.0-0 \
+  usbutils
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  libasound2 \ 
+  libgconf-2-4 \
+  libnspr4 \
+  libnss3 \
+  libnss3-tools \
+  libcanberra0
+
+RUN ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libnotify4 
 
 # Ceedling and test framework
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ruby-full
 RUN DEBIAN_FRONTEND=noninteractive gem install ceedling
 
-# MSP432 support tools
+# MSP432 compiler support tools
 COPY ./deps/msp432-gcc-1.1.0.1-linux-x64-support-package-installer.run /tmp/msp432-tools.run
 RUN chmod a+x /tmp/msp432-tools.run
 RUN /tmp/msp432-tools.run --prefix /usr/local/msp432-tools --mode unattended
 RUN rm /tmp/msp432-tools.run
 
-#MSP432 support tools config
+#MSP432 compiler support tools config
 ENV DEVICE MSP432P401R
 ENV GCC_BIN_DIR /usr/bin/
 ENV GCC_INC_DIR /usr/arm-none-eabi/include
@@ -43,7 +61,12 @@ ENV PATH /usr/local/msp432-tools/emulation/common/uscif:$PATH
 RUN chmod a+x /usr/local/msp432-tools/emulation/common/uscif/gdb_agent_console
 ENV PATH /usr/local/msp432-tools/emulation/common/uscif/xds110:$PATH
 RUN chmod a+x /usr/local/msp432-tools/emulation/common/uscif/xds110/xdsdfu
-#RUN echo 'alias hi="echo hello"' >> ~/.bashrc
+
+#MSP432 board programming utility
+COPY ./deps/uniflash_sl.4.1.1169.run /tmp/uniflash.run
+RUN chmod a+x /tmp/uniflash.run
+RUN /tmp/uniflash.run --prefix /opt/ti/uniflash_4.0 --mode unattended
+ENV PATH /opt/ti/uniflash_4.0/:$PATH
 
 #Code Composer Studio
 #COPY ./deps/CCS7.0.0.00043_linux-x64.tar.gz /tmp/CCS7.tar.gz
@@ -51,6 +74,9 @@ RUN chmod a+x /usr/local/msp432-tools/emulation/common/uscif/xds110/xdsdfu
 #RUN wget -O /tmp/CCS/CCS7.tar.gz  http://software-dl.ti.com/ccs/esd/CCSv7/CCS_7_0_0/exports/CCS7.0.0.00043_web_linux-x64.tar.gz
 #RUN tar -xvzf /tmp/CCS/CCS7.tar.gz -C /tmp/CCS
 #RUN /tmp/CCS/ccs_setup_linux64_7.0.0.00043.bin --prefix /usr/local/ccs-7.0 --mode unattended --apps-select-all true
+
+# Cleanup
+RUN rm -r /tmp/*
 
 # Enter command shell
 CMD ["/bin/bash"]
