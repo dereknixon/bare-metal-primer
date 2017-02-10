@@ -313,6 +313,7 @@ typedef enum IRQn
 #define TIMER_A2_BASE                         (PERIPH_BASE +0x00000800)          /*!< Base address of module TIMER_A2 registers */
 #define TIMER_A3_BASE                         (PERIPH_BASE +0x00000C00)          /*!< Base address of module TIMER_A3 registers */
 #define TLV_BASE                                 ((uint32_t)0x00201000)          /*!< Base address of module TLV registers */
+#define WDT_A_BASE                            (PERIPH_BASE +0x00004800)          /*!< Base address of module WDT_A registers */
 
 
 /*@}*/ /* end of group MSP432P401R_MemoryMap */
@@ -1315,6 +1316,8 @@ typedef struct {
   @{
 */
 
+EXTERN DIO_PORT_Odd_Interruptable_Type _MOCK_P1;
+
 #define ADC14                            ((ADC14_Type *) ADC14_BASE)   
 #define AES256                           ((AES256_Type *) AES256_BASE) 
 #define CAPTIO0                          ((CAPTIO_Type *) CAPTIO0_BASE)
@@ -1329,7 +1332,7 @@ typedef struct {
 #define PD                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0060))
 #define PE                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0080))
 #define PJ                               ((DIO_PORT_Not_Interruptable_Type*) (DIO_BASE + 0x0120))
-#define P1                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0000))
+#define P1                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P1)
 #define P2                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0000))
 #define P3                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0020))
 #define P4                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0020))
@@ -1383,8 +1386,8 @@ typedef struct {
 #define TIMER_A3                         ((Timer_A_Type *) TIMER_A3_BASE)
 #define TLV                              ((TLV_Type *) TLV_BASE)       
 
-EXTERN WDT_A_Type WDT_A_BASE;                 /*!< Base address of module WDT_A registers */
-#define WDT_A                            ((WDT_A_Type *) &WDT_A_BASE)   
+EXTERN WDT_A_Type _MOCK_WDT_A;
+#define WDT_A                            ((WDT_A_Type *) &_MOCK_WDT_A)
 
 
 /*@}*/ /* end of group MSP432P401R_PeripheralDecl */
