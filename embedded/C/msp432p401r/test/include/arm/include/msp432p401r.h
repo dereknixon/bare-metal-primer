@@ -1316,7 +1316,8 @@ typedef struct {
   @{
 */
 
-EXTERN DIO_PORT_Odd_Interruptable_Type _MOCK_P1;
+EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P1;
+EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 
 #define ADC14                            ((ADC14_Type *) ADC14_BASE)   
 #define AES256                           ((AES256_Type *) AES256_BASE) 
@@ -1333,7 +1334,7 @@ EXTERN DIO_PORT_Odd_Interruptable_Type _MOCK_P1;
 #define PE                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0080))
 #define PJ                               ((DIO_PORT_Not_Interruptable_Type*) (DIO_BASE + 0x0120))
 #define P1                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P1)
-#define P2                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0000))
+#define P2                               ((DIO_PORT_Even_Interruptable_Type*) &_MOCK_P2)
 #define P3                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0020))
 #define P4                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0020))
 #define P5                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0040))

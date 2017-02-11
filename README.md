@@ -48,4 +48,17 @@ In order to flash the firmware image to the development board, you will need to 
 the [UniFlash](http://processors.wiki.ti.com/index.php/Category:CCS_UniFlash)  utility from TI on 
 your host system.
 
-The final image is `/src/embedded/C/msp432p401r/build/app.out`
+The final image is `/src/embedded/C/msp432p401r/build/app.out
+
+# Branches
+
+### turn-on-led
+
+This branch demonstrates turning on *LED1*
+
+### flash-led-using-software-delay
+
+Demonstrates turning on *LED1* and causing it to flash using a software based delay.   In addition, switch
+*S1* will emulate a processing delay while pressed, in order to demonstrate how processing delays can effect
+softare based timing.
+
