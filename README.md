@@ -26,3 +26,26 @@ Run the image to be dropped into a development command shell
 $> docker run -it --rm -v `pwd`:/src <your_docker_image_name>
 ```
 
+###Using the Docker image
+
+The docker image can be used to build the project and run tests.
+
+To run tests only
+
+```bash
+$> /src/embedded/C/msp432p401r/rake test:all
+```
+
+To run tests and prepare the final firmware image, run
+
+```bash
+$> /src/embedded/C/msp432p401r/rake
+```
+
+NOTE: The Docker image can *not* be used to load the firware image on the development board,
+due to limitations with Docker to access USB devices attached to the host in some host environments.
+In order to flash the firmware image to the development board, you will need to install and run
+the [UniFlash](http://processors.wiki.ti.com/index.php/Category:CCS_UniFlash)  utility from TI on 
+your host system.
+
+The final image is `/src/embedded/C/msp432p401r/build/app.out`
