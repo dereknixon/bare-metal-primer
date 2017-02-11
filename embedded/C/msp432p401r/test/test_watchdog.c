@@ -5,14 +5,6 @@
 
 #include "mock_register.h"
 
-void setUp(void)
-{
-}
-
-void tearDown(void)
-{
-}
-
 void test_stop_watchdog_writes_to_watchdog_control(void)
 {
     register_write16_Expect(&WDT_A->CTL, WDT_A_CTL_PW | WDT_A_CTL_HOLD);

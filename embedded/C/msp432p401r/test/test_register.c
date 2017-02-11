@@ -1,14 +1,6 @@
 #include "unity.h"
 #include "register.h"
 
-void setUp(void)
-{
-}
-
-void tearDown(void)
-{
-}
-
 void test_register_write8_value_to_register(void)
 {
     uint8_t a_register = 0xF0;
@@ -41,7 +33,7 @@ void test_register_write32_value_to_register(void)
 
 void test_register_set_bits8_value_to_register(void)
 {
-    uint8_t a_register = 0x00F0;
+    uint8_t a_register = 0xF0;
     const uint8_t bits = 0x0A;
     const uint8_t expected = a_register | bits;;
 
@@ -71,4 +63,3 @@ void test_register_set_bits32_value_to_register(void)
 
     TEST_ASSERT_EQUAL_UINT32(expected, a_register);
 }
-
