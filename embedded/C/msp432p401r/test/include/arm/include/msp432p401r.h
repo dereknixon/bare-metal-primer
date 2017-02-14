@@ -1316,6 +1316,8 @@ typedef struct {
   @{
 */
 
+EXTERN CS_Type _MOCK_CS;
+EXTERN DIO_PORT_Not_Interruptable_Type   _MOCK_PJ;
 EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P1;
 EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 
@@ -1326,13 +1328,13 @@ EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 #define COMP_E0                          ((COMP_E_Type *) COMP_E0_BASE)
 #define COMP_E1                          ((COMP_E_Type *) COMP_E1_BASE)
 #define CRC32                            ((CRC32_Type *) CRC32_BASE)   
-#define CS                               ((CS_Type *) CS_BASE)         
+#define CS                               ((CS_Type *) &_MOCK_CS)
 #define PA                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0000))
 #define PB                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0020))
 #define PC                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0040))
 #define PD                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0060))
 #define PE                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0080))
-#define PJ                               ((DIO_PORT_Not_Interruptable_Type*) (DIO_BASE + 0x0120))
+#define PJ                               ((DIO_PORT_Not_Interruptable_Type*)  &_MOCK_PJ)
 #define P1                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P1)
 #define P2                               ((DIO_PORT_Even_Interruptable_Type*) &_MOCK_P2)
 #define P3                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0020))

@@ -1,6 +1,7 @@
 #include "msp.h"
 #include "watchdog.h"
 #include "io.h"
+#include "low_frequency_crystal.h"
 
 static void init(void);
 static void toggle_led(void);
@@ -33,6 +34,9 @@ static void init(void)
     io_configure_pin_as_output(P1, BIT0);
     io_configure_pin_as_input(P1, BIT1);
     io_clear_output_pin(P1, BIT0);
+
+    enable_low_frequency_crystal();
+    wait_for_low_frequency_crystal_stabilization();
 }
 
 static void toggle_led(void)
