@@ -26,7 +26,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
   libc6-i386 \
   Tk \
   gcc-arm-embedded \
-#  libnewlib-arm-none-eabi \
   libgtk2.0-0 \
   usbutils
 
@@ -61,19 +60,6 @@ ENV PATH /usr/local/msp432-tools/emulation/common/uscif:$PATH
 RUN chmod a+x /usr/local/msp432-tools/emulation/common/uscif/gdb_agent_console
 ENV PATH /usr/local/msp432-tools/emulation/common/uscif/xds110:$PATH
 RUN chmod a+x /usr/local/msp432-tools/emulation/common/uscif/xds110/xdsdfu
-
-#MSP432 board programming utility
-COPY ./deps/uniflash_sl.4.1.1169.run /tmp/uniflash.run
-RUN chmod a+x /tmp/uniflash.run
-RUN /tmp/uniflash.run --prefix /opt/ti/uniflash_4.0 --mode unattended
-ENV PATH /opt/ti/uniflash_4.0/:$PATH
-
-#Code Composer Studio
-#COPY ./deps/CCS7.0.0.00043_linux-x64.tar.gz /tmp/CCS7.tar.gz
-#RUN mkdir -p /tmp/CCS
-#RUN wget -O /tmp/CCS/CCS7.tar.gz  http://software-dl.ti.com/ccs/esd/CCSv7/CCS_7_0_0/exports/CCS7.0.0.00043_web_linux-x64.tar.gz
-#RUN tar -xvzf /tmp/CCS/CCS7.tar.gz -C /tmp/CCS
-#RUN /tmp/CCS/ccs_setup_linux64_7.0.0.00043.bin --prefix /usr/local/ccs-7.0 --mode unattended --apps-select-all true
 
 # Cleanup
 RUN rm -r /tmp/*
