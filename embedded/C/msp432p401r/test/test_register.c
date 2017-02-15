@@ -1,6 +1,33 @@
 #include "unity.h"
 #include "register.h"
 
+void test_register_read8_returns_appropriate_value(void) {
+    const uint8_t expected = 1;
+    uint8_t a_register = expected;
+
+    uint8_t actual = register_read8(&a_register);
+
+    TEST_ASSERT_EQUAL_UINT8(expected, actual);
+}
+
+void test_register_read16_returns_appropriate_value(void) {
+    const uint16_t expected = 1;
+    uint16_t a_register = expected;
+
+    uint16_t actual = register_read16(&a_register);
+
+    TEST_ASSERT_EQUAL_UINT16(expected, actual);
+}
+
+void test_register_read32_returns_appropriate_value(void) {
+    const uint32_t expected = 1;
+    uint32_t a_register = expected;
+
+    uint32_t actual = register_read32(&a_register);
+
+    TEST_ASSERT_EQUAL_UINT32(expected, actual);
+}
+
 void test_register_write8_writes_value_to_register(void)
 {
     uint8_t a_register = 0xF0;

@@ -16,7 +16,7 @@ void wait_for_low_frequency_crystal_stabilization(void)
 {
     register_write32(&CS->KEY, CS_KEY_VAL);
 
-    while((CS->IFG & BIT0) == BIT0)
+    while((register_read32(&CS->IFG) & BIT0) == BIT0)
     {
         register_write32(&CS->CLRIFG, BIT0);
     }

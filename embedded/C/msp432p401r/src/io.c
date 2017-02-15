@@ -43,11 +43,13 @@ void io_configure_pin_as_input(volatile void* const port, const uint8_t pin) {
 }
 
 bool io_read_input_pin(volatile void* const port, const uint8_t pin) {
+    uint8_t value = 0;
+
     if (port == P1) {
-        return ((((DIO_PORT_Odd_Interruptable_Type*)port)->IN & pin) == pin);
+        value = register_read8(&((DIO_PORT_Odd_Interruptable_Type*)port)->IN);
     } else if (port == P2) {
-        return ((((DIO_PORT_Even_Interruptable_Type*)port)->IN & pin) == pin);
+        value = register_read8(&((DIO_PORT_Even_Interruptable_Type*)port)->IN);
     }
 
-    return false;
+    return ((value & pin) == pin);
 }

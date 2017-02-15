@@ -147,7 +147,7 @@ void test_io_configure_pin_as_input_does_not_handle_other_ports(void)
 
 void test_io_read_input_pin_returns_false_when_pin_is_cleared_on_P1(void)
 {
-    (*((uint8_t*)&P1->IN)) = 0;
+    register_read8_ExpectAndReturn(&P1->IN, 0);
 
     bool actual = io_read_input_pin(P1, BIT0);
 
@@ -156,7 +156,7 @@ void test_io_read_input_pin_returns_false_when_pin_is_cleared_on_P1(void)
 
 void test_io_read_input_pin_returns_true_when_pin_is_set_on_P1(void)
 {
-    (*((uint8_t*)&P1->IN)) = 1;
+    register_read8_ExpectAndReturn(&P1->IN, 1);
 
     bool actual = io_read_input_pin(P1, BIT0);
 
@@ -165,7 +165,7 @@ void test_io_read_input_pin_returns_true_when_pin_is_set_on_P1(void)
 
 void test_io_read_input_pin_returns_false_when_pin_is_cleared_on_P2(void)
 {
-    (*((uint8_t*)&P2->IN)) = 0;
+    register_read8_ExpectAndReturn(&P2->IN, 0);
 
     bool actual = io_read_input_pin(P2, BIT0);
 
@@ -174,7 +174,7 @@ void test_io_read_input_pin_returns_false_when_pin_is_cleared_on_P2(void)
 
 void test_io_read_input_pin_returns_true_when_pin_is_set_on_P2(void)
 {
-    (*((uint8_t*)&P2->IN)) = 1;
+    register_read8_ExpectAndReturn(&P2->IN, 1);
 
     bool actual = io_read_input_pin(P2, BIT0);
 
