@@ -1320,6 +1320,7 @@ EXTERN CS_Type _MOCK_CS;
 EXTERN DIO_PORT_Not_Interruptable_Type   _MOCK_PJ;
 EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P1;
 EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
+EXTERN Timer_A_Type _MOCK_TIMER_A0;
 
 #define ADC14                            ((ADC14_Type *) ADC14_BASE)   
 #define AES256                           ((AES256_Type *) AES256_BASE) 
@@ -1383,7 +1384,7 @@ EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 #define SYSCTL_Boot                      ((SYSCTL_Boot_Type *) (SYSCTL_BASE + 0x1000))
 #define TIMER32_1                        ((Timer32_Type *) TIMER32_BASE)
 #define TIMER32_2                        ((Timer32_Type *) (TIMER32_BASE + 0x00020))
-#define TIMER_A0                         ((Timer_A_Type *) TIMER_A0_BASE)
+#define TIMER_A0                         ((Timer_A_Type *) &_MOCK_TIMER_A0)
 #define TIMER_A1                         ((Timer_A_Type *) TIMER_A1_BASE)
 #define TIMER_A2                         ((Timer_A_Type *) TIMER_A2_BASE)
 #define TIMER_A3                         ((Timer_A_Type *) TIMER_A3_BASE)
