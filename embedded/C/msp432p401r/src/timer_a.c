@@ -21,14 +21,18 @@ void timer_a_start_in_up_mode(const uint16_t interval_in_counts)
 
 void timer_a_set_compare(const uint16_t interval_in_counts)
 {
-    register_set_bits16(&TIMER_A0->CCR[0], interval_in_counts);
+    register_set_bits16(&TIMER_A0->CCR[1], interval_in_counts);
 }
 
-void timer_a_set_output_mode_to_set_reset()
+void timer_a_set_output_mode_to_reset_set()
 {
     register_clear_bits16(&TIMER_A0->CCTL[0], TIMER_A_CCTLN_CCIE | TIMER_A_CCTLN_OUTMOD_7);
-    register_clear_bits16(&TIMER_A0->CCTL[0], TIMER_A_CCTLN_OUTMOD_MASK);
-    register_set_bits16(&TIMER_A0->CCTL[0], TIMER_A_CCTLN_OUTMOD_3);
+    register_clear_bits16(&TIMER_A0->CCTL[1], TIMER_A_CCTLN_OUTMOD_MASK);
+    register_set_bits16(&TIMER_A0->CCTL[1], TIMER_A_CCTLN_OUTMOD_7);
+
+    register_set_bits8(&P2->DIR, BIT4);
+    register_set_bits8(&P2->SEL0, BIT4);
+    register_clear_bits8(&P2->SEL1, BIT4);
 }
 
 void timer_a_enable_a0_interrupt(void)
