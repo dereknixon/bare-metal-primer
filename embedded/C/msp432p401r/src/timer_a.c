@@ -19,6 +19,11 @@ void timer_a_start(const uint16_t interval_in_counts)
     register_set_bits16(&TIMER_A0->CTL, TIMER_A_CTL_MC__UP | TIMER_A_CTL_CLR);
 }
 
+void timer_a_enable_a0_interrupt(void)
+{
+    register_set_bits16(&TIMER_A0->CTL, TIMER_A_CTL_IE);
+}
+
 static isr_callback_t _a0_isr_callback = NULL;
 
 void timer_a_set_a0_isr_callback(const isr_callback_t callback)
@@ -31,7 +36,8 @@ isr_callback_t timer_a_get_a0_isr_callback(void)
     return _a0_isr_callback;
 }
 
-void TA0_0_IRQHandler(void)
+void timer_a0_0_isr(void)
 {
-    execute_isr_callback(_a0_isr_callback);
+    register_clear_bits16(&TIMER_A0->CTL, TIMER_A_CTL_IFG);
+    execute_isr_callback(timer_a_get_a0_isr_callback());
 }

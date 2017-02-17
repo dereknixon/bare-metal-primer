@@ -35,6 +35,7 @@
 *****************************************************************************/
 
 #include <stdint.h>
+#include "timer_a.h"
 
 /* Entry point for the application. */
 extern int _mainCRTStartup();
@@ -137,7 +138,7 @@ void (* const interruptVectors[])(void) __attribute__ ((section (".intvecs"))) =
     FLCTL_IRQHandler,                      /* FLCTL ISR                 */
     COMP_E0_IRQHandler,                    /* COMP0 ISR                 */
     COMP_E1_IRQHandler,                    /* COMP1 ISR                 */
-    TA0_0_IRQHandler,                      /* TA0_0 ISR                 */
+    timer_a0_0_isr, //TA0_0_IRQHandler,                      /* TA0_0 ISR                 */
     TA0_N_IRQHandler,                      /* TA0_N ISR                 */
     TA1_0_IRQHandler,                      /* TA1_0 ISR                 */
     TA1_N_IRQHandler,                      /* TA1_N ISR                 */
