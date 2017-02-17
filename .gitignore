@@ -36,3 +36,6 @@
 .DS_Store
 embedded/C/msp432p401r/build/release
 embedded/C/msp432p401r/build/test
+
+#vim related
+*.swp

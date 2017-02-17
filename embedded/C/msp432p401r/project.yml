@@ -34,9 +34,6 @@
     - __MSP432P401R__
     - TARGET_IS_MSP432P4XX
     - gcc
-#    - UNITY_INT_WIDTH=32
-#    - UNITY_LONG_WIDTH=64
-#    - UNITY_POINTER_WIDTH=32
   :test:
     - *common_defines
     - TEST
@@ -80,8 +77,6 @@
      :executable: arm-none-eabi-gcc
      :name: 'MSP432 GCC'
      :arguments:
-#        - -I"$": COLLECTION_PATHS_TEST_TOOLCHAIN_INCLUDE
-#        - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
         - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
         - -I/usr/arm-none-eabi/include
         - -I/usr/local/msp432-tools/arm/include/
@@ -113,7 +108,7 @@
         - -g
         - -gstrict-dwarf
         - -Wall
-        - -T/usr/local/msp432-tools/arm/include/msp432p401r.lds
+        - -T./src/msp432p401r.lds
         - -l'c'
         - -l'gcc'
         - -l'nosys'

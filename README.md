@@ -62,3 +62,10 @@ Demonstrates turning on *LED1* and causing it to flash using a software based de
 *S1* will emulate a processing delay while pressed, in order to demonstrate how processing delays can effect
 softare based timing.
 
+### flash-led-using-timer-output
+
+Demonstrates using a timer output to flash an LED in order to provide stable flashing irregardless of processing
+that is occuring.   Timer A is used with CCR1 output enabled on P2.4.  In order to run this example, you will
+need to:
+- Remove the jumper labeled Red P1.0
+- Jumper P2.4 to the pin closest to the Red LED

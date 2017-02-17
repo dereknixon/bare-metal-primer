@@ -1,5 +1,17 @@
 #include "register.h"
 
+uint8_t register_read8(const volatile uint8_t* register_address) {
+    return (*register_address);
+}
+
+uint16_t register_read16(const volatile uint16_t* register_address) {
+    return (*register_address);
+}
+
+uint32_t register_read32(const volatile uint32_t* register_address) {
+    return (*register_address);
+}
+
 void register_write8(volatile uint8_t* const register_address, const uint8_t value_to_write) {
     (*register_address) = value_to_write;
 }

@@ -1316,8 +1316,12 @@ typedef struct {
   @{
 */
 
+EXTERN CS_Type _MOCK_CS;
+EXTERN DIO_PORT_Not_Interruptable_Type   _MOCK_PJ;
 EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P1;
 EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
+EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P7;
+EXTERN Timer_A_Type _MOCK_TIMER_A0;
 
 #define ADC14                            ((ADC14_Type *) ADC14_BASE)   
 #define AES256                           ((AES256_Type *) AES256_BASE) 
@@ -1326,20 +1330,20 @@ EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 #define COMP_E0                          ((COMP_E_Type *) COMP_E0_BASE)
 #define COMP_E1                          ((COMP_E_Type *) COMP_E1_BASE)
 #define CRC32                            ((CRC32_Type *) CRC32_BASE)   
-#define CS                               ((CS_Type *) CS_BASE)         
+#define CS                               ((CS_Type *) &_MOCK_CS)
 #define PA                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0000))
 #define PB                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0020))
 #define PC                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0040))
 #define PD                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0060))
 #define PE                               ((DIO_PORT_Interruptable_Type*) (DIO_BASE + 0x0080))
-#define PJ                               ((DIO_PORT_Not_Interruptable_Type*) (DIO_BASE + 0x0120))
+#define PJ                               ((DIO_PORT_Not_Interruptable_Type*)  &_MOCK_PJ)
 #define P1                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P1)
 #define P2                               ((DIO_PORT_Even_Interruptable_Type*) &_MOCK_P2)
 #define P3                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0020))
 #define P4                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0020))
 #define P5                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0040))
 #define P6                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0040))
-#define P7                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0060))
+#define P7                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P7)
 #define P8                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0060))
 #define P9                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0080))
 #define P10                              ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0080))
@@ -1381,7 +1385,7 @@ EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
 #define SYSCTL_Boot                      ((SYSCTL_Boot_Type *) (SYSCTL_BASE + 0x1000))
 #define TIMER32_1                        ((Timer32_Type *) TIMER32_BASE)
 #define TIMER32_2                        ((Timer32_Type *) (TIMER32_BASE + 0x00020))
-#define TIMER_A0                         ((Timer_A_Type *) TIMER_A0_BASE)
+#define TIMER_A0                         ((Timer_A_Type *) &_MOCK_TIMER_A0)
 #define TIMER_A1                         ((Timer_A_Type *) TIMER_A1_BASE)
 #define TIMER_A2                         ((Timer_A_Type *) TIMER_A2_BASE)
 #define TIMER_A3                         ((Timer_A_Type *) TIMER_A3_BASE)
