@@ -1320,6 +1320,7 @@ EXTERN CS_Type _MOCK_CS;
 EXTERN DIO_PORT_Not_Interruptable_Type   _MOCK_PJ;
 EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P1;
 EXTERN DIO_PORT_Even_Interruptable_Type  _MOCK_P2;
+EXTERN DIO_PORT_Odd_Interruptable_Type   _MOCK_P7;
 EXTERN Timer_A_Type _MOCK_TIMER_A0;
 
 #define ADC14                            ((ADC14_Type *) ADC14_BASE)   
@@ -1342,7 +1343,7 @@ EXTERN Timer_A_Type _MOCK_TIMER_A0;
 #define P4                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0020))
 #define P5                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0040))
 #define P6                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0040))
-#define P7                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0060))
+#define P7                               ((DIO_PORT_Odd_Interruptable_Type*)  &_MOCK_P7)
 #define P8                               ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0060))
 #define P9                               ((DIO_PORT_Odd_Interruptable_Type*)  (DIO_BASE + 0x0080))
 #define P10                              ((DIO_PORT_Even_Interruptable_Type*) (DIO_BASE + 0x0080))
