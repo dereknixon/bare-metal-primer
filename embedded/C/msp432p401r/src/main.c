@@ -6,7 +6,7 @@
 #include "register.h"
 
 static void init(void);
-static void processing_forever(void);
+static void nap(void);
 
 int main(void)
 {
@@ -14,7 +14,7 @@ int main(void)
 
     while(true)
     {
-        processing_forever();
+       nap();
     }
 
     return 0;
@@ -37,7 +37,7 @@ static void init(void)
     timer_a_set_output_mode_to_reset_set();
 }
 
-static void processing_forever(void)
+static void nap(void)
 {
-    while(true);
+    __wfi();
 }
